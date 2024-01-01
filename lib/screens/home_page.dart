@@ -1,7 +1,7 @@
 import 'package:base_converter_app/about_us.dart';
 import 'package:base_converter_app/all_bases.dart';
 import 'package:base_converter_app/common_base.dart';
-import 'package:base_converter_app/setting_page.dart';
+import 'package:base_converter_app/screens/setting_page.dart';
 import 'package:flutter/material.dart';
 
 enum Screen { commonBase, allBase }
@@ -22,7 +22,7 @@ class _MyWidgetState extends State<MyWidget> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 60,
+          toolbarHeight: 70,
           title: const Padding(
             padding: EdgeInsets.only(right: 5.0),
             child: Text(
@@ -49,7 +49,8 @@ class _MyWidgetState extends State<MyWidget> {
                                 child: const Text('Setting'),
                                 onTap: () => Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (context) => const SettingPage())),
+                                        builder: (context) =>
+                                            const SettingPage())),
                               ),
                               PopupMenuItem(
                                 onTap: () => showDialog(
@@ -88,7 +89,7 @@ class _MyWidgetState extends State<MyWidget> {
                         });
                       },
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 12.0, bottom: 8),
+                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "COMMON BASES",
                           textAlign: TextAlign.center,
@@ -115,7 +116,7 @@ class _MyWidgetState extends State<MyWidget> {
                         });
                       },
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 12.0, bottom: 8),
+                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "ALL BASES",
                           textAlign: TextAlign.center,
