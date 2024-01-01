@@ -59,7 +59,7 @@ class CommonBaseState extends State<CommonBase> {
                   updateOtherTextFields(base2Controller, value, 2),
                   formatter: '0-1',
             ),
-            kBaseContainerSpacer,
+            kCommonBaseContainerSpacer,
             TextFieldWidget(
               hintName: "BASE 8",
               baseName: "OCT",
@@ -70,7 +70,7 @@ class CommonBaseState extends State<CommonBase> {
                   updateOtherTextFields(base8Controller, value, 8),
                   formatter: '0-7',
             ),
-            kBaseContainerSpacer,
+            kCommonBaseContainerSpacer,
             TextFieldWidget(
               hintName: "BASE 10",
               baseName: "DEC",
@@ -81,7 +81,7 @@ class CommonBaseState extends State<CommonBase> {
                   updateOtherTextFields(base10Controller, value, 10),
                   formatter: '0-9',
             ),
-            kBaseContainerSpacer,
+            kCommonBaseContainerSpacer,
             TextFieldWidget(
               hintName: "BASE 16",
               baseName: "HEX",
