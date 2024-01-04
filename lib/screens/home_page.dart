@@ -1,6 +1,6 @@
-import 'package:base_converter_app/about_us.dart';
-import 'package:base_converter_app/all_bases.dart';
-import 'package:base_converter_app/common_base.dart';
+import 'package:base_converter_app/Widgets/about_us.dart';
+import 'package:base_converter_app/widgets/all_bases.dart';
+import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +14,47 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  void resetCommonBaseTextControllers() {
+    CommonBaseState commonBaseState = commonBaseKey.currentState!;
+    commonBaseState.base2Controller.clear();
+    commonBaseState.base8Controller.clear();
+    commonBaseState.base10Controller.clear();
+    commonBaseState.base16Controller.clear();
+  }
+
+  void resetAllBaseTextControllers() {
+    AllBasesState allBasesState = allBaseKey.currentState!;
+    allBasesState.base2Controller.clear();
+    allBasesState.base3Controller.clear();
+    allBasesState.base4Controller.clear();
+    allBasesState.base5Controller.clear();
+    allBasesState.base6Controller.clear();
+    allBasesState.base7Controller.clear();
+    allBasesState.base8Controller.clear();
+    allBasesState.base9Controller.clear();
+    allBasesState.base10Controller.clear();
+    allBasesState.base11Controller.clear();
+    allBasesState.base12Controller.clear();
+    allBasesState.base13Controller.clear();
+    allBasesState.base14Controller.clear();
+    allBasesState.base15Controller.clear();
+    allBasesState.base16Controller.clear();
+    allBasesState.base17Controller.clear();
+    allBasesState.base18Controller.clear();
+    allBasesState.base19Controller.clear();
+    allBasesState.base20Controller.clear();
+    allBasesState.base21Controller.clear();
+    allBasesState.base22Controller.clear();
+    allBasesState.base23Controller.clear();
+    allBasesState.base24Controller.clear();
+    allBasesState.base25Controller.clear();
+    allBasesState.base26Controller.clear();
+    allBasesState.base27Controller.clear();
+    allBasesState.base28Controller.clear();
+    allBasesState.base29Controller.clear();
+    allBasesState.base30Controller.clear();
+  }
+
   Screen selectedScreen = Screen.commonBase;
   bool showScreen = false;
 
@@ -34,8 +75,16 @@ class _MyWidgetState extends State<MyWidget> {
           actions: [
             Row(
               children: [
-                const InkWell(
-                  child: Text(
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      // Call the reset method
+                       (selectedScreen == Screen.commonBase)
+                      ?resetCommonBaseTextControllers():
+                      resetAllBaseTextControllers();
+                    });
+                  },
+                  child: const Text(
                     "RESET",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
@@ -60,7 +109,7 @@ class _MyWidgetState extends State<MyWidget> {
                                     }),
                                 child: const Text('About App'),
                               ),
-                              PopupMenuItem(child: Text('Rate Us')),
+                              const PopupMenuItem(child: Text('Rate Us')),
                             ])),
               ],
             ),
@@ -131,7 +180,13 @@ class _MyWidgetState extends State<MyWidget> {
             const SizedBox(
               height: 12,
             ),
-            showScreen ? const AllBases() : const CommonBase(),
+            showScreen
+                ? AllBases(
+                    key: allBaseKey,
+                  )
+                : CommonBase(
+                    key: commonBaseKey,
+                  ),
           ],
         ),
       ),

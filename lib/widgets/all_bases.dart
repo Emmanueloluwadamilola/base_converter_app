@@ -6,10 +6,12 @@ class AllBases extends StatefulWidget {
   const AllBases({super.key});
 
   @override
-  State<AllBases> createState() => _AllBasesState();
+  State<AllBases> createState() => AllBasesState();
 }
 
-class _AllBasesState extends State<AllBases> {
+GlobalKey<AllBasesState> allBaseKey = GlobalKey();
+
+class AllBasesState extends State<AllBases> {
   TextEditingController base2Controller = TextEditingController();
   TextEditingController base3Controller = TextEditingController();
   TextEditingController base4Controller = TextEditingController();

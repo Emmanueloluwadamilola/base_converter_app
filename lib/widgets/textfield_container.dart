@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
 class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget(
+   const TextFieldWidget(
       {super.key,
       required this.hintName,
       required this.baseName,
       required this.colour,
       required this.base,
       required this.baseController,
-      required this.onChange, required this.formatter});
+      required this.onChange,
+      required this.formatter});
   final String hintName;
   final String baseName;
   final Color colour;
   final int base;
-  final TextEditingController baseController;
+  final TextEditingController? baseController;
   final Function onChange;
   final String formatter;
 
@@ -41,7 +43,7 @@ class TextFieldWidget extends StatelessWidget {
                   bottom: 17,
                 ),
                 child: Text(
-                  baseName,
+               baseName,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 16),
                 ),
@@ -56,7 +58,7 @@ class TextFieldWidget extends StatelessWidget {
                 return onChange(value);
               },
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp('[$formatter]'))
+                FilteringTextInputFormatter.allow(RegExp('[${formatter}]'))
               ],
               controller: baseController,
               style: const TextStyle(),

@@ -9,6 +9,8 @@ class CommonBase extends StatefulWidget {
   State<CommonBase> createState() => CommonBaseState();
 }
 
+GlobalKey<CommonBaseState> commonBaseKey = GlobalKey();
+
 class CommonBaseState extends State<CommonBase> {
   TextEditingController base2Controller = TextEditingController();
   TextEditingController base8Controller = TextEditingController();
@@ -21,20 +23,18 @@ class CommonBaseState extends State<CommonBase> {
     try {
       int inputValue = int.parse(text, radix: sourceBase);
 
- 
-        if (sourceController != base2Controller) {
-          base2Controller.text = inputValue.toRadixString(2);
-        }
-        if (sourceController != base8Controller) {
-          base8Controller.text = inputValue.toRadixString(8);
-        }
-        if (sourceController != base10Controller) {
-          base10Controller.text = inputValue.toString();
-        }
-        if (sourceController != base16Controller) {
-          base16Controller.text = inputValue.toRadixString(16).toUpperCase();
-        }
-      
+      if (sourceController != base2Controller) {
+        base2Controller.text = inputValue.toRadixString(2);
+      }
+      if (sourceController != base8Controller) {
+        base8Controller.text = inputValue.toRadixString(8);
+      }
+      if (sourceController != base10Controller) {
+        base10Controller.text = inputValue.toString();
+      }
+      if (sourceController != base16Controller) {
+        base16Controller.text = inputValue.toRadixString(16).toUpperCase();
+      }
     } catch (e) {
       base2Controller.text = '';
       base8Controller.text = '';
@@ -57,7 +57,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base2Controller,
               onChange: (value) =>
                   updateOtherTextFields(base2Controller, value, 2),
-                  formatter: '0-1',
+              formatter: '0-1',
             ),
             kCommonBaseContainerSpacer,
             TextFieldWidget(
@@ -68,7 +68,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base8Controller,
               onChange: (value) =>
                   updateOtherTextFields(base8Controller, value, 8),
-                  formatter: '0-7',
+              formatter: '0-7',
             ),
             kCommonBaseContainerSpacer,
             TextFieldWidget(
@@ -79,7 +79,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base10Controller,
               onChange: (value) =>
                   updateOtherTextFields(base10Controller, value, 10),
-                  formatter: '0-9',
+              formatter: '0-9',
             ),
             kCommonBaseContainerSpacer,
             TextFieldWidget(
@@ -90,7 +90,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base16Controller,
               onChange: (value) =>
                   updateOtherTextFields(base16Controller, value, 16),
-                  formatter: '0-9,A-F,a-f',
+              formatter: '0-9,A-F,a-f',
             ),
           ],
         ),
