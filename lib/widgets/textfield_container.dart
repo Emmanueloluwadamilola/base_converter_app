@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class TextFieldWidget extends StatelessWidget {
-   const TextFieldWidget(
+  const TextFieldWidget(
       {super.key,
       required this.hintName,
       required this.baseName,
@@ -11,7 +10,7 @@ class TextFieldWidget extends StatelessWidget {
       required this.base,
       required this.baseController,
       required this.onChange,
-      required this.formatter});
+      required this.formatter, required this.keyboard});
   final String hintName;
   final String baseName;
   final Color colour;
@@ -19,6 +18,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController? baseController;
   final Function onChange;
   final String formatter;
+  final TextInputType keyboard;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class TextFieldWidget extends StatelessWidget {
                   bottom: 17,
                 ),
                 child: Text(
-               baseName,
+                  baseName,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 16),
                 ),

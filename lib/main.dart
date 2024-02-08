@@ -1,4 +1,3 @@
-
 import 'package:base_converter_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Base Converter',
       theme: ThemeData(
+       radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.blue)),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,

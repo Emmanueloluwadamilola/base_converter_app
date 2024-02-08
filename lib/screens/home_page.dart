@@ -57,6 +57,7 @@ class _MyWidgetState extends State<MyWidget> {
 
   Screen selectedScreen = Screen.commonBase;
   bool showScreen = false;
+  int keyboardValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +80,9 @@ class _MyWidgetState extends State<MyWidget> {
                   onTap: () {
                     setState(() {
                       // Call the reset method
-                       (selectedScreen == Screen.commonBase)
-                      ?resetCommonBaseTextControllers():
-                      resetAllBaseTextControllers();
+                      (selectedScreen == Screen.commonBase)
+                          ? resetCommonBaseTextControllers()
+                          : resetAllBaseTextControllers();
                     });
                   },
                   child: const Text(
@@ -99,7 +100,7 @@ class _MyWidgetState extends State<MyWidget> {
                                 onTap: () => Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const SettingPage())),
+                                             SettingPage(keyboardValue: keyboardValue,))),
                               ),
                               PopupMenuItem(
                                 onTap: () => showDialog(
@@ -142,7 +143,7 @@ class _MyWidgetState extends State<MyWidget> {
                         child: Text(
                           "COMMON BASES",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: Colors.black54),
                         ),
                       ),
                     ),
@@ -169,7 +170,7 @@ class _MyWidgetState extends State<MyWidget> {
                         child: Text(
                           "ALL BASES",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: Colors.black54),
                         ),
                       ),
                     ),
@@ -182,10 +183,10 @@ class _MyWidgetState extends State<MyWidget> {
             ),
             showScreen
                 ? AllBases(
-                    key: allBaseKey,
+                    key: allBaseKey, keyboard: null,
                   )
                 : CommonBase(
-                    key: commonBaseKey,
+                    key: commonBaseKey, keyboard: null,
                   ),
           ],
         ),

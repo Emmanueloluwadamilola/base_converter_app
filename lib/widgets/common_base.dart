@@ -3,7 +3,8 @@ import 'package:base_converter_app/widgets/textfield_container.dart';
 import 'package:flutter/material.dart';
 
 class CommonBase extends StatefulWidget {
-  const CommonBase({super.key});
+  const CommonBase({super.key, required this.keyboard});
+  final TextInputType keyboard;
 
   @override
   State<CommonBase> createState() => CommonBaseState();
@@ -16,7 +17,6 @@ class CommonBaseState extends State<CommonBase> {
   TextEditingController base8Controller = TextEditingController();
   TextEditingController base10Controller = TextEditingController();
   TextEditingController base16Controller = TextEditingController();
-
 
   void updateOtherTextFields(
       TextEditingController sourceController, String text, int sourceBase) {
@@ -58,6 +58,7 @@ class CommonBaseState extends State<CommonBase> {
               onChange: (value) =>
                   updateOtherTextFields(base2Controller, value, 2),
               formatter: '0-1',
+              keyboard: widget.keyboard,
             ),
             kCommonBaseContainerSpacer,
             TextFieldWidget(
@@ -68,7 +69,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base8Controller,
               onChange: (value) =>
                   updateOtherTextFields(base8Controller, value, 8),
-              formatter: '0-7',
+              formatter: '0-7', keyboard: widget.keyboard,
             ),
             kCommonBaseContainerSpacer,
             TextFieldWidget(
@@ -79,7 +80,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base10Controller,
               onChange: (value) =>
                   updateOtherTextFields(base10Controller, value, 10),
-              formatter: '0-9',
+              formatter: '0-9',keyboard: widget.keyboard,
             ),
             kCommonBaseContainerSpacer,
             TextFieldWidget(
@@ -90,7 +91,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base16Controller,
               onChange: (value) =>
                   updateOtherTextFields(base16Controller, value, 16),
-              formatter: '0-9,A-F,a-f',
+              formatter: '0-9,A-F,a-f',keyboard: widget.keyboard,
             ),
           ],
         ),
