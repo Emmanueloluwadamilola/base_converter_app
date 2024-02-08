@@ -63,7 +63,7 @@ class TextFieldWidget extends StatelessWidget {
               controller: baseController,
               style: const TextStyle(),
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
+              keyboardType: keyboard,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderRadius: const BorderRadius.only(
