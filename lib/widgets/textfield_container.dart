@@ -10,7 +10,8 @@ class TextFieldWidget extends StatelessWidget {
       required this.base,
       required this.baseController,
       required this.onChange,
-      required this.formatter, required this.keyboard});
+      required this.formatter,
+      required this.keyboard, required this.isFormatted});
   final String hintName;
   final String baseName;
   final Color colour;
@@ -19,6 +20,7 @@ class TextFieldWidget extends StatelessWidget {
   final Function onChange;
   final String formatter;
   final TextInputType keyboard;
+  final bool isFormatted;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,8 @@ class TextFieldWidget extends StatelessWidget {
                 return onChange(value);
               },
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp('[${formatter}]'))
+                FilteringTextInputFormatter.allow(RegExp('[$formatter]'),
+                    replacementString: isFormatted? '': 'N/A'),
               ],
               controller: baseController,
               style: const TextStyle(),

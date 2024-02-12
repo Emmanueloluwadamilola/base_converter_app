@@ -14,8 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextInputType keyboardInputType = TextInputType.text;
+  TextInputType keyboardInputType = TextInputType.number;
   bool isDarkAppTheme = false;
+  bool isFormatted = true;
 
   void updateKeyboardType(TextInputType keyboardType) {
     setState(() {
@@ -26,6 +27,12 @@ class _HomePageState extends State<HomePage> {
   void updateTheme(bool isDarkTheme) {
     setState(() {
       isDarkAppTheme = isDarkTheme;
+    });
+  }
+
+  void updateInputFormat(bool inputFormat) {
+    setState(() {
+      isFormatted = inputFormat;
     });
   }
 
@@ -75,141 +82,142 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: isDarkAppTheme? ThemeData.dark(): ThemeData.light(),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 70,
-            title: const Padding(
-              padding: EdgeInsets.only(right: 5.0),
-              child: Text(
-                "Base Converter",
-                style: TextStyle(color: Colors.white),
-              ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 70,
+          title: const Padding(
+            padding: EdgeInsets.only(right: 5.0),
+            child: Text(
+              "Base Converter",
+              style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.blue,
-            actions: [
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        // Call the reset method
-                        (selectedScreen == Screen.commonBase)
-                            ? resetCommonBaseTextControllers()
-                            : resetAllBaseTextControllers();
-                      });
-                    },
-                    child: const Text(
-                      "RESET",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
-                    ),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: PopupMenuButton(
-                          color: Colors.white,
-                          itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  child: const Text('Setting'),
-                                  onTap: () => Navigator.of(context)
-                                      .push(MaterialPageRoute(
-                                          builder: (context) => SettingPage(
-                                                updateKeyboardType:
-                                                    updateKeyboardType, updateTheme: updateTheme,
-                                              ))),
-                                ),
-                                PopupMenuItem(
-                                  onTap: () => showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return const DialogBoxWidget();
-                                      }),
-                                  child: const Text('About App'),
-                                ),
-                                const PopupMenuItem(child: Text('Rate Us')),
-                              ])),
-                ],
-              ),
-            ],
           ),
-          backgroundColor: Colors.white,
-          body: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: (selectedScreen == Screen.commonBase)
-                              ? const BorderSide(width: 2, color: Colors.blue)
-                              : const BorderSide(width: 0, color: Colors.white),
-                        ),
+          backgroundColor: Colors.blue,
+          actions: [
+            Row(
+              children: [
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      // Call the reset method
+                      (selectedScreen == Screen.commonBase)
+                          ? resetCommonBaseTextControllers()
+                          : resetAllBaseTextControllers();
+                    });
+                  },
+                  child: const Text(
+                    "RESET",
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: PopupMenuButton(
+                        color: Colors.white,
+                        itemBuilder: (context) => [
+                              PopupMenuItem(
+                                child: const Text('Setting'),
+                                onTap: () => Navigator.of(context)
+                                    .push(MaterialPageRoute(
+                                        builder: (context) => SettingPage(
+                                              updateKeyboardType:
+                                                  updateKeyboardType,
+                                              updateTheme: updateTheme,
+                                              keyboard: keyboardInputType,
+                                              inputFormat: isFormatted,
+                                              updateInputFormat: updateInputFormat,
+                                            ))),
+                              ),
+                              PopupMenuItem(
+                                onTap: () => showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return const DialogBoxWidget();
+                                    }),
+                                child: const Text('About App'),
+                              ),
+                              const PopupMenuItem(child: Text('Rate Us')),
+                            ])),
+              ],
+            ),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: (selectedScreen == Screen.commonBase)
+                            ? const BorderSide(width: 2, color: Colors.blue)
+                            : const BorderSide(width: 0, color: Colors.white),
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedScreen = Screen.commonBase;
-                            showScreen = false;
-                          });
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 12.0, bottom: 12),
-                          child: Text(
-                            "COMMON BASES",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.black54),
-                          ),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedScreen = Screen.commonBase;
+                          showScreen = false;
+                        });
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
+                        child: Text(
+                          "COMMON BASES",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16, color: Colors.black54),
                         ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: (selectedScreen == Screen.allBase)
-                              ? const BorderSide(width: 2, color: Colors.blue)
-                              : const BorderSide(width: 0, color: Colors.white),
-                        ),
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: (selectedScreen == Screen.allBase)
+                            ? const BorderSide(width: 2, color: Colors.blue)
+                            : const BorderSide(width: 0, color: Colors.white),
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedScreen = Screen.allBase;
-                            showScreen = true;
-                          });
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 12.0, bottom: 12),
-                          child: Text(
-                            "ALL BASES",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.black54),
-                          ),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedScreen = Screen.allBase;
+                          showScreen = true;
+                        });
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
+                        child: Text(
+                          "ALL BASES",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16, color: Colors.black54),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              showScreen
-                  ? AllBases(
-                      key: allBaseKey,
-                      keyboard: keyboardInputType,
-                    )
-                  : CommonBase(
-                      key: commonBaseKey,
-                      keyboard: keyboardInputType,
-                    ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            showScreen
+                ? AllBases(
+                    key: allBaseKey,
+                    keyboard: keyboardInputType, isFormatted: isFormatted,
+                  )
+                : CommonBase(
+                    key: commonBaseKey,
+                    keyboard: keyboardInputType, isFormatted: isFormatted,
+                  ),
+          ],
         ),
       ),
     );
