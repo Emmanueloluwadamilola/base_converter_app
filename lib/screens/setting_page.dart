@@ -8,12 +8,14 @@ class SettingPage extends StatefulWidget {
       required this.updateTheme,
       required this.inputFormat,
       required this.keyboard,
+      required this.themeType,
       required this.updateInputFormat});
   final Function(TextInputType) updateKeyboardType;
-  final Function(bool) updateTheme;
+  final Function(ThemeData) updateTheme;
   final Function(bool) updateInputFormat;
   late TextInputType keyboard;
   late bool inputFormat;
+  late ThemeData themeType;
 
   @override
   State<SettingPage> createState() => _SettingPageState();
@@ -52,7 +54,7 @@ class _SettingPageState extends State<SettingPage> {
                   'Keyboard',
                 ),
                 RadioMenuButton(
-                    value: TextInputType.number,
+                    value: const TextInputType.numberWithOptions(decimal: true),
                     groupValue: widget.keyboard,
                     onChanged: (value) {
                       setState(() {
@@ -117,10 +119,19 @@ class _SettingPageState extends State<SettingPage> {
               children: [
                 const Text('Theme'),
                 RadioMenuButton(
-                  value: false,
-                  groupValue: true,
+                  value: ThemeData(
+            useMaterial3: true,
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: const TextTheme(
+                bodyLarge: TextStyle(color: Colors.black),
+                bodyMedium: TextStyle(color: Colors.black),
+                bodySmall: TextStyle(color: Colors.black))),
+                  groupValue: widget.themeType,
                   onChanged: (value) {
-                    widget.updateTheme(false);
+                    setState(() {
+                      widget.themeType = value!;
+                      widget.updateTheme(widget.themeType);
+                    });
                   },
                   child: const Text(
                     'Light',
@@ -128,10 +139,19 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                 ),
                 RadioMenuButton(
-                    value: true,
-                    groupValue: true,
+                    value: ThemeData(
+            useMaterial3: true,
+            scaffoldBackgroundColor: Colors.black,
+            textTheme: const TextTheme(
+                bodyLarge: TextStyle(color: Colors.white),
+                bodyMedium: TextStyle(color: Colors.white),
+                bodySmall: TextStyle(color: Colors.white))),
+                    groupValue: widget.themeType,
                     onChanged: (value) {
-                      widget.updateTheme(true);
+                      setState(() {
+                        widget.themeType = value!;
+                        widget.updateTheme(widget.themeType);
+                      });
                     },
                     child: const Text(
                       'Dark',

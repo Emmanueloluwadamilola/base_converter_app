@@ -1,4 +1,5 @@
 import 'package:base_converter_app/Widgets/about_us.dart';
+import 'package:base_converter_app/theme/dark.dart';
 import 'package:base_converter_app/widgets/all_bases.dart';
 import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
@@ -14,8 +15,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextInputType keyboardInputType = TextInputType.number;
-  bool isDarkAppTheme = false;
+  TextInputType keyboardInputType =
+      const TextInputType.numberWithOptions(decimal: true);
+  ThemeData isThemeLight = ThemeData().copyWith(scaffoldBackgroundColor: Colors.black);
   bool isFormatted = true;
 
   void updateKeyboardType(TextInputType keyboardType) {
@@ -24,10 +26,26 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void updateTheme(bool isDarkTheme) {
+  void updateTheme(ThemeData isDarkTheme) {
     setState(() {
-      isDarkAppTheme = isDarkTheme;
+      isThemeLight = isDarkTheme;
     });
+
+    // if (isThemeLight == false) {
+    //   setState(() {
+    //     ThemeData.dark(useMaterial3: true);
+    //   });
+    // } else {
+    //   setState(() {
+    //     ThemeData(
+    //         useMaterial3: true,
+    //         scaffoldBackgroundColor: Colors.black,
+    //         textTheme: const TextTheme(
+    //             bodyLarge: TextStyle(color: Colors.white),
+    //             bodyMedium: TextStyle(color: Colors.white),
+    //             bodySmall: TextStyle(color: Colors.white)));
+    //   });
+    // }
   }
 
   void updateInputFormat(bool inputFormat) {
@@ -114,6 +132,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: PopupMenuButton(
+                        icon: const Icon(Icons.more_vert, color: Colors.white),
                         color: Colors.white,
                         itemBuilder: (context) => [
                               PopupMenuItem(
@@ -126,7 +145,9 @@ class _HomePageState extends State<HomePage> {
                                               updateTheme: updateTheme,
                                               keyboard: keyboardInputType,
                                               inputFormat: isFormatted,
-                                              updateInputFormat: updateInputFormat,
+                                              themeType: isThemeLight,
+                                              updateInputFormat:
+                                                  updateInputFormat,
                                             ))),
                               ),
                               PopupMenuItem(
@@ -211,11 +232,13 @@ class _HomePageState extends State<HomePage> {
             showScreen
                 ? AllBases(
                     key: allBaseKey,
-                    keyboard: keyboardInputType, isFormatted: isFormatted,
+                    keyboard: keyboardInputType,
+                    isFormatted: isFormatted,
                   )
                 : CommonBase(
                     key: commonBaseKey,
-                    keyboard: keyboardInputType, isFormatted: isFormatted,
+                    keyboard: keyboardInputType,
+                    isFormatted: isFormatted,
                   ),
           ],
         ),

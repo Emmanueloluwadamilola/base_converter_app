@@ -7,17 +7,24 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Color buttonColor(Set<MaterialState> states) {
+      return Colors.blue;
+    }
+
     return MaterialApp(
       title: 'Base Converter',
-      theme: ThemeData.light(useMaterial3: true,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith(buttonColor),
+        ),
       ),
-      darkTheme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, 
       home: const HomePage(),
     );
   }

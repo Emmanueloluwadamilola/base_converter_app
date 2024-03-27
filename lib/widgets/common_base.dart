@@ -46,7 +46,7 @@ class CommonBaseState extends State<CommonBase> {
       }
     } else {
       try {
-        int inputValue = int.parse(text, radix: sourceBase);
+        //  int inputValue = int.parse(text, radix: sourceBase);
 
         if (sourceController != base2Controller) {
           base2Controller.text = 'N/A';
@@ -83,7 +83,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base2Controller,
               onChange: (value) =>
                   updateOtherTextFields(base2Controller, value, 2),
-              formatter: widget.isFormatted ? '0-1' : '0-9,A-Z,a-z',
+              formatter: widget.isFormatted ? '.?d{0-1}' : '0-9,A-Z,a-z',
               keyboard: widget.keyboard,
               isFormatted: widget.isFormatted,
             ),
@@ -96,7 +96,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base8Controller,
               onChange: (value) =>
                   updateOtherTextFields(base8Controller, value, 8),
-              formatter: widget.isFormatted ? '0-7' : '0-9,A-Z,a-z',
+              formatter: widget.isFormatted ? '.?d{0-7}' : '0-9,A-Z,a-z',
               keyboard: widget.keyboard,
               isFormatted: widget.isFormatted,
             ),
@@ -109,7 +109,7 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base10Controller,
               onChange: (value) =>
                   updateOtherTextFields(base10Controller, value, 10),
-              formatter: widget.isFormatted ? '0-9' : '0-9,A-Z,a-z',
+              formatter: widget.isFormatted ? '.?d{0-9}' : '0-9,A-Z,a-z',
               keyboard: widget.keyboard,
               isFormatted: widget.isFormatted,
             ),
@@ -122,7 +122,8 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base16Controller,
               onChange: (value) =>
                   updateOtherTextFields(base16Controller, value, 16),
-              formatter: widget.isFormatted ? '0-9,A-F,a-f' : '0-9,A-Z,a-z',
+              formatter:
+                  widget.isFormatted ? '.?d{0-9,A-F,a-f}' : '0-9,A-Z,a-z',
               keyboard: widget.keyboard,
               isFormatted: widget.isFormatted,
             ),
