@@ -114,6 +114,10 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: PopupMenuButton(
+                        icon: const Icon(
+                          Icons.more_vert,
+                          color: Colors.white,
+                        ),
                         color: Colors.white,
                         itemBuilder: (context) => [
                               PopupMenuItem(
@@ -126,7 +130,8 @@ class _HomePageState extends State<HomePage> {
                                               updateTheme: updateTheme,
                                               keyboard: keyboardInputType,
                                               inputFormat: isFormatted,
-                                              updateInputFormat: updateInputFormat,
+                                              updateInputFormat:
+                                                  updateInputFormat,
                                             ))),
                               ),
                               PopupMenuItem(
@@ -211,11 +216,13 @@ class _HomePageState extends State<HomePage> {
             showScreen
                 ? AllBases(
                     key: allBaseKey,
-                    keyboard: keyboardInputType, isFormatted: isFormatted,
+                    keyboard: keyboardInputType,
+                    isFormatted: isFormatted,
                   )
                 : CommonBase(
                     key: commonBaseKey,
-                    keyboard: keyboardInputType, isFormatted: isFormatted,
+                    keyboard: keyboardInputType,
+                    isFormatted: isFormatted,
                   ),
           ],
         ),

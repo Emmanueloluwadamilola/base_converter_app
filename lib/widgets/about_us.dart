@@ -13,7 +13,7 @@ class DialogBoxWidget extends StatelessWidget {
       ),
       content: Text(
         'This app is a clone of an original app created by ..'
-        '. . \nThis clone is created using flutter. The link to the github file is below \n',
+        '. . \nThis clone is created using flutter. The link to the github file is below \n ',
         style: TextStyle(fontSize: 17),
       ),
     );
