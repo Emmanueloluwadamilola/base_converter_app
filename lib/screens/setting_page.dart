@@ -8,14 +8,16 @@ class SettingPage extends StatefulWidget {
       required this.updateTheme,
       required this.inputFormat,
       required this.keyboard,
+
       required this.updateInputFormat,
       required this.theme});
   final Function(TextInputType) updateKeyboardType;
-  final Function(bool) updateTheme;
+  final Function(ThemeData) updateTheme;
   final Function(bool) updateInputFormat;
   late TextInputType keyboard;
   late bool inputFormat;
   late bool theme;
+
 
   @override
   State<SettingPage> createState() => _SettingPageState();
@@ -119,12 +121,14 @@ class _SettingPageState extends State<SettingPage> {
               children: [
                 const Text('Theme'),
                 RadioMenuButton(
+
                   value: true,
                   groupValue: widget.theme,
                   onChanged: (value) {
                     setState(() {
                       widget.theme = value!;
                       widget.updateTheme(widget.theme);
+
                     });
                   },
                   child:  Text(
@@ -133,12 +137,14 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                 ),
                 RadioMenuButton(
+
                     value: false,
                     groupValue: widget.theme,
                     onChanged: (value) {
                       setState(() {
                         widget.theme = value!;
                         widget.updateTheme(widget.theme);
+
                       });
                     },
                     child: Text(

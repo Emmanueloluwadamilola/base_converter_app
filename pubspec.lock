@@ -9,14 +9,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  b:
-    dependency: "direct main"
-    description:
-      name: b
-      sha256: a0c505a0526d8ad595b374db42c6ead4507f87d3d128ebd97889a70b087226a7
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -57,14 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -107,6 +91,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -121,12 +106,14 @@ packages:
     source: hosted
     version: "3.0.1"
   invertible:
+
     dependency: transitive
     description:
-      name: invertible
-      sha256: "2e88300b67085adf5e766839a49e3a8da7db85d8826a9068bba24e015b79381a"
+      name: leak_tracker
+      sha256: "78eb209deea09858f5269f5a5b02be4049535f568c07b275096836f01ea323fa"
       url: "https://pub.dev"
     source: hosted
+
     version: "2.0.0"
   leak_tracker:
     dependency: transitive
@@ -135,6 +122,7 @@ packages:
       sha256: "78eb209deea09858f5269f5a5b02be4049535f568c07b275096836f01ea323fa"
       url: "https://pub.dev"
     source: hosted
+
     version: "10.0.0"
   leak_tracker_flutter_testing:
     dependency: transitive
@@ -189,6 +177,7 @@ packages:
     description:
       name: path
       sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
+
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
@@ -288,6 +277,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+
   sky_engine:
     dependency: transitive
     description: flutter
@@ -338,6 +328,7 @@ packages:
     description:
       name: test_api
       sha256: "5c2f730018264d276c20e4f1503fd1308dfbbae39ec8ee63c5236311ac06954b"
+
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
@@ -405,6 +396,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+
   vector_math:
     dependency: transitive
     description:
@@ -414,6 +406,7 @@ packages:
     source: hosted
     version: "2.1.4"
   vm_service:
+
     dependency: transitive
     description:
       name: vm_service
@@ -448,3 +441,4 @@ packages:
 sdks:
   dart: ">=3.3.0 <4.0.0"
   flutter: ">=3.19.0"
+

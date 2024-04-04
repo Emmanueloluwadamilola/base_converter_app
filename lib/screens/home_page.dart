@@ -1,4 +1,5 @@
 import 'package:base_converter_app/Widgets/about_us.dart';
+import 'package:base_converter_app/theme/dark.dart';
 import 'package:base_converter_app/widgets/all_bases.dart';
 import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
@@ -19,8 +20,8 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
-  TextInputType keyboardInputType = const TextInputType.numberWithOptions(decimal: true);
 
+  TextInputType keyboardInputType = const TextInputType.numberWithOptions(decimal: true);
   bool isFormatted = true;
 
   void updateKeyboardType(TextInputType keyboardType) {
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage> {
       keyboardInputType = keyboardType;
     });
   }
+
 
   void updateInputFormat(bool inputFormat) {
     setState(() {
@@ -118,6 +120,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: PopupMenuButton(
+
                         icon: const Icon(
                           Icons.more_vert,
                           color: Colors.white,
@@ -137,9 +140,11 @@ class _HomePageState extends State<HomePage> {
                                               updateTheme: widget.updateTheme,
                                               keyboard: keyboardInputType,
                                               inputFormat: isFormatted,
+
                                               updateInputFormat:
                                                   updateInputFormat,
                                               theme: widget.theme,
+
                                             ))),
                               ),
                               PopupMenuItem(

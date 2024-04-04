@@ -10,6 +10,7 @@ void main() {
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -38,19 +39,24 @@ class _MyAppState extends State<MyApp> {
     loadThemePreference();
   }
 
-  
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Color buttonColor(Set<MaterialState> states) {
+      return Colors.blue;
+    }
+
     return MaterialApp(
       title: 'Base Converter',
+
       theme: isThemeDark ? lightTheme : darkTheme,
       debugShowCheckedModeBanner: false,
       home: HomePage(
         updateTheme: changeTheme,
         theme: isThemeDark,
       ),
+
     );
   }
 }
