@@ -1,5 +1,4 @@
 import 'package:base_converter_app/Widgets/about_us.dart';
-import 'package:base_converter_app/theme/dark.dart';
 import 'package:base_converter_app/widgets/all_bases.dart';
 import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
