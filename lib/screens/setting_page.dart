@@ -54,7 +54,7 @@ class _SettingPageState extends State<SettingPage> {
                   'Keyboard',
                 ),
                 RadioMenuButton(
-                    value: TextInputType.number,
+                    value: const TextInputType.numberWithOptions(decimal: true),
                     groupValue: widget.keyboard,
                     onChanged: (value) {
                       setState(() {

@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
-  TextInputType keyboardInputType = TextInputType.number;
+  TextInputType keyboardInputType = const TextInputType.numberWithOptions(decimal: true);
 
   bool isFormatted = true;
 
