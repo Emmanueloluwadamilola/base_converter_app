@@ -43,9 +43,6 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Color buttonColor(Set<MaterialState> states) {
-      return Colors.blue;
-    }
 
     return MaterialApp(
       title: 'Base Converter',
