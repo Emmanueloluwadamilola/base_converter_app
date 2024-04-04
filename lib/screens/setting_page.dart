@@ -8,14 +8,16 @@ class SettingPage extends StatefulWidget {
       required this.updateTheme,
       required this.inputFormat,
       required this.keyboard,
-      required this.themeType,
-      required this.updateInputFormat});
+
+      required this.updateInputFormat,
+      required this.theme});
   final Function(TextInputType) updateKeyboardType;
   final Function(ThemeData) updateTheme;
   final Function(bool) updateInputFormat;
   late TextInputType keyboard;
   late bool inputFormat;
-  late ThemeData themeType;
+  late bool theme;
+
 
   @override
   State<SettingPage> createState() => _SettingPageState();
@@ -28,7 +30,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Settings',
@@ -62,9 +64,9 @@ class _SettingPageState extends State<SettingPage> {
                         widget.updateKeyboardType(widget.keyboard);
                       });
                     },
-                    child: const Text(
+                    child:  Text(
                       'Show number keyboard when neccessary',
-                      style: TextStyle(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall,
                     )),
                 RadioMenuButton(
                     value: TextInputType.text,
@@ -75,9 +77,9 @@ class _SettingPageState extends State<SettingPage> {
                         widget.updateKeyboardType(widget.keyboard);
                       });
                     },
-                    child: const Text(
+                    child:  Text(
                       'Never show number keyboard',
-                      style: TextStyle(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall,
                     )),
               ],
             ),
@@ -94,9 +96,9 @@ class _SettingPageState extends State<SettingPage> {
                       widget.updateInputFormat(widget.inputFormat);
                     });
                   },
-                  child: const Text(
+                  child: Text(
                     'Do not allow to type invalid numbers',
-                    style: TextStyle(fontSize: 12),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
                 RadioMenuButton(
@@ -108,9 +110,9 @@ class _SettingPageState extends State<SettingPage> {
                         widget.updateInputFormat(widget.inputFormat);
                       });
                     },
-                    child: const Text(
+                    child:  Text(
                       'Allow to type invalid numbers(N/A for result)',
-                      style: TextStyle(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall,
                     )),
               ],
             ),
@@ -119,43 +121,35 @@ class _SettingPageState extends State<SettingPage> {
               children: [
                 const Text('Theme'),
                 RadioMenuButton(
-                  value: ThemeData(
-            useMaterial3: true,
-            scaffoldBackgroundColor: Colors.white,
-            textTheme: const TextTheme(
-                bodyLarge: TextStyle(color: Colors.black),
-                bodyMedium: TextStyle(color: Colors.black),
-                bodySmall: TextStyle(color: Colors.black))),
-                  groupValue: widget.themeType,
+
+                  value: true,
+                  groupValue: widget.theme,
                   onChanged: (value) {
                     setState(() {
-                      widget.themeType = value!;
-                      widget.updateTheme(widget.themeType);
+                      widget.theme = value!;
+                      widget.updateTheme(widget.theme);
+
                     });
                   },
-                  child: const Text(
+                  child:  Text(
                     'Light',
-                    style: TextStyle(fontSize: 12),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
                 RadioMenuButton(
-                    value: ThemeData(
-            useMaterial3: true,
-            scaffoldBackgroundColor: Colors.black,
-            textTheme: const TextTheme(
-                bodyLarge: TextStyle(color: Colors.white),
-                bodyMedium: TextStyle(color: Colors.white),
-                bodySmall: TextStyle(color: Colors.white))),
-                    groupValue: widget.themeType,
+
+                    value: false,
+                    groupValue: widget.theme,
                     onChanged: (value) {
                       setState(() {
-                        widget.themeType = value!;
-                        widget.updateTheme(widget.themeType);
+                        widget.theme = value!;
+                        widget.updateTheme(widget.theme);
+
                       });
                     },
-                    child: const Text(
+                    child: Text(
                       'Dark',
-                      style: TextStyle(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall,
                     )),
               ],
             ),

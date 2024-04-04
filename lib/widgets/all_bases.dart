@@ -3,7 +3,11 @@ import 'package:base_converter_app/widgets/textfield_container.dart';
 import 'package:flutter/material.dart';
 
 class AllBases extends StatefulWidget {
-  const AllBases({super.key, required this.keyboard, required this.isFormatted});
+  const AllBases({
+    super.key,
+    required this.keyboard,
+    required this.isFormatted,
+  });
   final TextInputType keyboard;
   final bool isFormatted;
 
@@ -136,37 +140,8 @@ class AllBasesState extends State<AllBases> {
       if (sourceController != base30Controller) {
         base30Controller.text = inputValue.toRadixString(30).toUpperCase();
       }
-    } catch (e) {
-      base2Controller.text = '';
-      base3Controller.text = '';
-      base4Controller.text = '';
-      base5Controller.text = '';
-      base6Controller.text = '';
-      base7Controller.text = '';
-      base8Controller.text = '';
-      base9Controller.text = '';
-      base10Controller.text = '';
-      base11Controller.text = '';
-      base12Controller.text = '';
-      base13Controller.text = '';
-      base14Controller.text = '';
-      base15Controller.text = '';
-      base16Controller.text = '';
-      base17Controller.text = '';
-      base18Controller.text = '';
-      base19Controller.text = '';
-      base20Controller.text = '';
-      base21Controller.text = '';
-      base22Controller.text = '';
-      base23Controller.text = '';
-      base24Controller.text = '';
-      base25Controller.text = '';
-      base26Controller.text = '';
-      base27Controller.text = '';
-      base28Controller.text = '';
-      base29Controller.text = '';
-      base30Controller.text = '';
-    }
+     // ignore: empty_catches
+     } catch (e) {}
   }
 
   @override
@@ -183,8 +158,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base2Controller,
               onChange: (value) =>
                   updateOtherTextFields(base2Controller, value, 2),
-              formatter: '0-1',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,  
+              formatter: '.?d{0-1}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -195,8 +171,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base3Controller,
               onChange: (value) =>
                   updateOtherTextFields(base3Controller, value, 3),
-              formatter: '0-2',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-2}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -207,8 +184,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base4Controller,
               onChange: (value) =>
                   updateOtherTextFields(base4Controller, value, 4),
-              formatter: '0-3',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-3}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -219,8 +197,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base5Controller,
               onChange: (value) =>
                   updateOtherTextFields(base5Controller, value, 5),
-              formatter: '0-4',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-4}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -231,8 +210,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base6Controller,
               onChange: (value) =>
                   updateOtherTextFields(base6Controller, value, 6),
-              formatter: '0-5',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-5}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -243,8 +223,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base7Controller,
               onChange: (value) =>
                   updateOtherTextFields(base7Controller, value, 7),
-              formatter: '0-6',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-6}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -255,8 +236,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base8Controller,
               onChange: (value) =>
                   updateOtherTextFields(base8Controller, value, 8),
-              formatter: '0-7',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-7}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -267,8 +249,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base9Controller,
               onChange: (value) =>
                   updateOtherTextFields(base9Controller, value, 9),
-              formatter: '0-8',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-8}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -279,8 +262,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base10Controller,
               onChange: (value) =>
                   updateOtherTextFields(base10Controller, value, 10),
-              formatter: '0-9',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -290,8 +274,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base11Controller,
               onChange: (value) =>
                   updateOtherTextFields(base11Controller, value, 11),
-              formatter: '0-10',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A,a}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
               base: 3,
             ),
             kBaseContainerSpacer,
@@ -303,8 +288,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base12Controller,
               onChange: (value) =>
                   updateOtherTextFields(base12Controller, value, 12),
-              formatter: '0-11',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-B,a-b}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -315,8 +301,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base13Controller,
               onChange: (value) =>
                   updateOtherTextFields(base13Controller, value, 13),
-              formatter: '0-12',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-C,a-c}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -327,8 +314,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base14Controller,
               onChange: (value) =>
                   updateOtherTextFields(base14Controller, value, 14),
-              formatter: '0-13',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-D,a-d}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -339,8 +327,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base15Controller,
               onChange: (value) =>
                   updateOtherTextFields(base15Controller, value, 15),
-              formatter: '0-14',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-E,a-e}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -351,8 +340,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base16Controller,
               onChange: (value) =>
                   updateOtherTextFields(base16Controller, value, 16),
-              formatter: '0-15',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-F,a-f}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -363,8 +353,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base17Controller,
               onChange: (value) =>
                   updateOtherTextFields(base17Controller, value, 17),
-              formatter: '0-16',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-G,a-g}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -375,8 +366,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base18Controller,
               onChange: (value) =>
                   updateOtherTextFields(base18Controller, value, 18),
-              formatter: '0-17',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-H,a-h}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -387,8 +379,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base19Controller,
               onChange: (value) =>
                   updateOtherTextFields(base19Controller, value, 19),
-              formatter: '0-18',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-I,a-i}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -399,8 +392,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base20Controller,
               onChange: (value) =>
                   updateOtherTextFields(base20Controller, value, 20),
-              formatter: '0-19',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-J,a-j}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -411,8 +405,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base21Controller,
               onChange: (value) =>
                   updateOtherTextFields(base21Controller, value, 21),
-              formatter: '0-20',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-K,a-k}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -423,8 +418,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base22Controller,
               onChange: (value) =>
                   updateOtherTextFields(base22Controller, value, 22),
-              formatter: '0-21',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-L,a-l}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -435,8 +431,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base23Controller,
               onChange: (value) =>
                   updateOtherTextFields(base23Controller, value, 23),
-              formatter: '0-22',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-M,a-m}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -447,8 +444,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base24Controller,
               onChange: (value) =>
                   updateOtherTextFields(base24Controller, value, 24),
-              formatter: '0-23',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-N,a-n}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -459,8 +457,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base25Controller,
               onChange: (value) =>
                   updateOtherTextFields(base25Controller, value, 25),
-              formatter: '0-24',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-O,a-o}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -471,8 +470,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base26Controller,
               onChange: (value) =>
                   updateOtherTextFields(base26Controller, value, 26),
-              formatter: '0-25',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-P,a-p}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -483,8 +483,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base27Controller,
               onChange: (value) =>
                   updateOtherTextFields(base27Controller, value, 27),
-              formatter: '0-26',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-Q,a-q}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -495,8 +496,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base28Controller,
               onChange: (value) =>
                   updateOtherTextFields(base28Controller, value, 28),
-              formatter: '0-27',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-R,a-r}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -507,8 +509,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base29Controller,
               onChange: (value) =>
                   updateOtherTextFields(base29Controller, value, 29),
-              formatter: '0-28',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-S,a-s}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             kBaseContainerSpacer,
             TextFieldWidget(
@@ -519,8 +522,9 @@ class AllBasesState extends State<AllBases> {
               baseController: base30Controller,
               onChange: (value) =>
                   updateOtherTextFields(base30Controller, value, 30),
-              formatter: '0-29',
-              keyboard: widget.keyboard, isFormatted: widget.isFormatted,
+              formatter: '.?d{0-9,A-T,a-t}',
+              keyboard: widget.keyboard,
+              isFormatted: widget.isFormatted,
             ),
             const SizedBox(
               height: 60,

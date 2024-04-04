@@ -4,20 +4,24 @@ import 'package:base_converter_app/widgets/all_bases.dart';
 import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 enum Screen { commonBase, allBase }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.updateTheme, required this.theme});
+  final Function(bool) updateTheme;
+  final bool theme;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
+
+
 class _HomePageState extends State<HomePage> {
-  TextInputType keyboardInputType =
-      const TextInputType.numberWithOptions(decimal: true);
-  ThemeData isThemeLight = ThemeData().copyWith(scaffoldBackgroundColor: Colors.black);
+
+  TextInputType keyboardInputType = const TextInputType.numberWithOptions(decimal: true);
   bool isFormatted = true;
 
   void updateKeyboardType(TextInputType keyboardType) {
@@ -26,27 +30,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void updateTheme(ThemeData isDarkTheme) {
-    setState(() {
-      isThemeLight = isDarkTheme;
-    });
-
-    // if (isThemeLight == false) {
-    //   setState(() {
-    //     ThemeData.dark(useMaterial3: true);
-    //   });
-    // } else {
-    //   setState(() {
-    //     ThemeData(
-    //         useMaterial3: true,
-    //         scaffoldBackgroundColor: Colors.black,
-    //         textTheme: const TextTheme(
-    //             bodyLarge: TextStyle(color: Colors.white),
-    //             bodyMedium: TextStyle(color: Colors.white),
-    //             bodySmall: TextStyle(color: Colors.white)));
-    //   });
-    // }
-  }
 
   void updateInputFormat(bool inputFormat) {
     setState(() {
@@ -98,6 +81,10 @@ class _HomePageState extends State<HomePage> {
   Screen selectedScreen = Screen.commonBase;
   bool showScreen = false;
 
+  
+
+ 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -129,42 +116,59 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
+                const Gap(15),
                 Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: PopupMenuButton(
-                        icon: const Icon(Icons.more_vert, color: Colors.white),
-                        color: Colors.white,
+
+                        icon: const Icon(
+                          Icons.more_vert,
+                          color: Colors.white,
+                        ),
+                        color: Theme.of(context).popupMenuTheme.color,
                         itemBuilder: (context) => [
                               PopupMenuItem(
-                                child: const Text('Setting'),
+                                child: Text(
+                                  'Setting',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
                                 onTap: () => Navigator.of(context)
                                     .push(MaterialPageRoute(
                                         builder: (context) => SettingPage(
                                               updateKeyboardType:
                                                   updateKeyboardType,
-                                              updateTheme: updateTheme,
+                                              updateTheme: widget.updateTheme,
                                               keyboard: keyboardInputType,
                                               inputFormat: isFormatted,
-                                              themeType: isThemeLight,
+
                                               updateInputFormat:
                                                   updateInputFormat,
+                                              theme: widget.theme,
+
                                             ))),
                               ),
                               PopupMenuItem(
                                 onTap: () => showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return const DialogBoxWidget();
+                                      return  DialogBoxWidget();
                                     }),
-                                child: const Text('About App'),
+                                child: Text(
+                                  'About App',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
                               ),
-                              const PopupMenuItem(child: Text('Rate Us')),
+                              PopupMenuItem(
+                                  child: Text(
+                                'Rate Us',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              )),
                             ])),
               ],
             ),
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Column(
           children: [
             Row(
@@ -186,12 +190,15 @@ class _HomePageState extends State<HomePage> {
                           showScreen = false;
                         });
                       },
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "COMMON BASES",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.black54),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 16),
                         ),
                       ),
                     ),
@@ -213,12 +220,15 @@ class _HomePageState extends State<HomePage> {
                           showScreen = true;
                         });
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "ALL BASES",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.black54),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 16),
                         ),
                       ),
                     ),

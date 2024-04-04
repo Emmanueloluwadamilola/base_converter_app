@@ -39,10 +39,7 @@ class CommonBaseState extends State<CommonBase> {
           base16Controller.text = inputValue.toRadixString(16).toUpperCase();
         }
       } catch (e) {
-        // base2Controller.text = '';
-        // base8Controller.text = '';
-        // base10Controller.text = '';
-        // base16Controller.text = '';
+       
       }
     } else {
       try {
@@ -122,8 +119,9 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base16Controller,
               onChange: (value) =>
                   updateOtherTextFields(base16Controller, value, 16),
-              formatter:
-                  widget.isFormatted ? '.?d{0-9,A-F,a-f}' : '0-9,A-Z,a-z',
+
+              formatter: widget.isFormatted ? '.?d{0-9,A-F,a-f}' : '0-9,A-Z,a-z',
+
               keyboard: widget.keyboard,
               isFormatted: widget.isFormatted,
             ),

@@ -11,7 +11,8 @@ class TextFieldWidget extends StatelessWidget {
       required this.baseController,
       required this.onChange,
       required this.formatter,
-      required this.keyboard, required this.isFormatted});
+      required this.keyboard,
+      required this.isFormatted});
   final String hintName;
   final String baseName;
   final Color colour;
@@ -61,10 +62,13 @@ class TextFieldWidget extends StatelessWidget {
               },
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp('[$formatter]'),
-                    replacementString: isFormatted? '': 'N/A'),
+                    replacementString: isFormatted ? '' : 'N/A'),
               ],
               controller: baseController,
-              style: const TextStyle(),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 16),
               textAlign: TextAlign.center,
               keyboardType: keyboard,
               decoration: InputDecoration(
@@ -85,9 +89,10 @@ class TextFieldWidget extends StatelessWidget {
                   borderSide: BorderSide(color: colour, width: 2),
                 ),
                 hintText: hintName,
-                hintStyle: const TextStyle(
-                  fontSize: 18,
-                ),
+                hintStyle: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 18),
               ),
             ),
           ),
