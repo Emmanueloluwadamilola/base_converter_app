@@ -12,7 +12,7 @@ class SettingPage extends StatefulWidget {
       required this.updateInputFormat,
       required this.theme});
   final Function(TextInputType) updateKeyboardType;
-  final Function(ThemeData) updateTheme;
+  final Function(bool) updateTheme;
   final Function(bool) updateInputFormat;
   late TextInputType keyboard;
   late bool inputFormat;
