@@ -18,10 +18,11 @@ class DialogBoxWidget extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'This app is a clone of an original app created by ..'
-            '\nThis clone is created using flutter. The link to the github file is below',
+            'This app is a clone of an original app created by Universapp'
+            '\nThis clone is created using flutter. The link to the github codebase is below',
             style:
                 Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),
           ),

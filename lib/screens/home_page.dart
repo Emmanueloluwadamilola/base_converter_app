@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () => showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return const DialogBoxWidget();
+                                      return  DialogBoxWidget();
                                     }),
                                 child: Text(
                                   'About App',
