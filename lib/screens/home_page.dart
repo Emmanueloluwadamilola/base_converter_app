@@ -3,30 +3,29 @@ import 'package:base_converter_app/widgets/all_bases.dart';
 import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 enum Screen { commonBase, allBase }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.updateTheme, required this.theme});
+  final Function(bool) updateTheme;
+  final bool theme;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
+
+
 class _HomePageState extends State<HomePage> {
   TextInputType keyboardInputType = TextInputType.number;
-  bool isDarkAppTheme = false;
+
   bool isFormatted = true;
 
   void updateKeyboardType(TextInputType keyboardType) {
     setState(() {
       keyboardInputType = keyboardType;
-    });
-  }
-
-  void updateTheme(bool isDarkTheme) {
-    setState(() {
-      isDarkAppTheme = isDarkTheme;
     });
   }
 
@@ -80,6 +79,10 @@ class _HomePageState extends State<HomePage> {
   Screen selectedScreen = Screen.commonBase;
   bool showScreen = false;
 
+  
+
+ 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -111,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
+                const Gap(15),
                 Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: PopupMenuButton(
@@ -118,20 +122,24 @@ class _HomePageState extends State<HomePage> {
                           Icons.more_vert,
                           color: Colors.white,
                         ),
-                        color: Colors.white,
+                        color: Theme.of(context).popupMenuTheme.color,
                         itemBuilder: (context) => [
                               PopupMenuItem(
-                                child: const Text('Setting'),
+                                child: Text(
+                                  'Setting',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
                                 onTap: () => Navigator.of(context)
                                     .push(MaterialPageRoute(
                                         builder: (context) => SettingPage(
                                               updateKeyboardType:
                                                   updateKeyboardType,
-                                              updateTheme: updateTheme,
+                                              updateTheme: widget.updateTheme,
                                               keyboard: keyboardInputType,
                                               inputFormat: isFormatted,
                                               updateInputFormat:
                                                   updateInputFormat,
+                                              theme: widget.theme,
                                             ))),
                               ),
                               PopupMenuItem(
@@ -140,15 +148,22 @@ class _HomePageState extends State<HomePage> {
                                     builder: (context) {
                                       return const DialogBoxWidget();
                                     }),
-                                child: const Text('About App'),
+                                child: Text(
+                                  'About App',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
                               ),
-                              const PopupMenuItem(child: Text('Rate Us')),
+                              PopupMenuItem(
+                                  child: Text(
+                                'Rate Us',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              )),
                             ])),
               ],
             ),
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Column(
           children: [
             Row(
@@ -170,12 +185,15 @@ class _HomePageState extends State<HomePage> {
                           showScreen = false;
                         });
                       },
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "COMMON BASES",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.black54),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 16),
                         ),
                       ),
                     ),
@@ -197,12 +215,15 @@ class _HomePageState extends State<HomePage> {
                           showScreen = true;
                         });
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "ALL BASES",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.black54),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 16),
                         ),
                       ),
                     ),
