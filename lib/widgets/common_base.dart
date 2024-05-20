@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 
 class CommonBase extends StatefulWidget {
   const CommonBase(
-      {super.key, required this.keyboard, required this.isFormatted});
+      {super.key,
+      required this.keyboard,
+      required this.isFormatted,
+      required this.decimalPlaces});
   final TextInputType keyboard;
   final bool isFormatted;
+  final int decimalPlaces;
 
   @override
   State<CommonBase> createState() => CommonBaseState();
@@ -22,29 +26,83 @@ class CommonBaseState extends State<CommonBase> {
 
   void updateOtherTextFields(
       TextEditingController sourceController, String text, int sourceBase) {
+    List<String> parts = text.split('.');
+    int intValue = int.parse(parts[0], radix: sourceBase);
+    double fractionalValue =
+        parts.length > 1 ? double.parse('0.${parts[1]}') : 0;
+    //int? resultBase;
+    String fractionalConverted = '';
+    String intValueConverted = '';
+    //int getResultBase(){}
+
+    getConversion(int resultBase) {
+      if (fractionalValue != 0) {
+        double fractionalDecimal = fractionalValue;
+        List<String> fractionalDigits = [];
+        for (int i = 0; i < 20; i++) {
+          fractionalDecimal *= resultBase;
+          int digit = fractionalDecimal.truncate();
+          fractionalDigits.add(digit.toRadixString(resultBase));
+          fractionalDecimal -= digit;
+          if (fractionalDecimal == 0) break;
+        }
+        fractionalConverted = fractionalDigits.join('');
+        //double decimal = double.parse(fractionalConverted);
+        if (fractionalConverted.length >= widget.decimalPlaces) {
+          fractionalConverted =
+              fractionalConverted.substring(0, widget.decimalPlaces);
+        } else {
+         return fractionalConverted;
+        }
+      }
+    }
+
+    outPutConversion() {
+      if (sourceController != base2Controller) {
+        int resultBase = 2;
+        intValueConverted = intValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base2Controller.text = (intValueConverted +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'
+                : ''));
+      }
+      if (sourceController != base8Controller) {
+        int resultBase = 8;
+        intValueConverted = intValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base8Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
+      }
+      if (sourceController != base10Controller) {
+        int resultBase = 10;
+        intValueConverted = intValue.toString();
+        getConversion(resultBase);
+        base10Controller.text = (intValueConverted +
+                (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : ''))
+            .toString();
+      }
+      if (sourceController != base16Controller) {
+        int resultBase = 16;
+        intValueConverted = intValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base16Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
+      }
+    }
+
     if (widget.isFormatted == true) {
       try {
-        int inputValue = int.parse(text, radix: sourceBase);
-
-        if (sourceController != base2Controller) {
-          base2Controller.text = inputValue.toRadixString(2);
-        }
-        if (sourceController != base8Controller) {
-          base8Controller.text = inputValue.toRadixString(8);
-        }
-        if (sourceController != base10Controller) {
-          base10Controller.text = inputValue.toString();
-        }
-        if (sourceController != base16Controller) {
-          base16Controller.text = inputValue.toRadixString(16).toUpperCase();
-        }
-      } catch (e) {
-       
-      }
+        outPutConversion();
+      } catch (e) {}
     } else {
       try {
-        //  int inputValue = int.parse(text, radix: sourceBase);
-
+        outPutConversion();
+      } catch (e) {
         if (sourceController != base2Controller) {
           base2Controller.text = 'N/A';
         }
@@ -57,11 +115,6 @@ class CommonBaseState extends State<CommonBase> {
         if (sourceController != base16Controller) {
           base16Controller.text = 'N/A';
         }
-      } catch (e) {
-        // base2Controller.text = '';
-        // base8Controller.text = '';
-        // base10Controller.text = '';
-        // base16Controller.text = '';
       }
     }
   }
@@ -119,9 +172,8 @@ class CommonBaseState extends State<CommonBase> {
               baseController: base16Controller,
               onChange: (value) =>
                   updateOtherTextFields(base16Controller, value, 16),
-
-              formatter: widget.isFormatted ? '.?d{0-9,A-F,a-f}' : '0-9,A-Z,a-z',
-
+              formatter:
+                  widget.isFormatted ? '.?d{0-9,A-F,a-f}' : '0-9,A-Z,a-z',
               keyboard: widget.keyboard,
               isFormatted: widget.isFormatted,
             ),

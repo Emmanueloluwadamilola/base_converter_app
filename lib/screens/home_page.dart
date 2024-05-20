@@ -2,25 +2,31 @@ import 'package:base_converter_app/Widgets/about_us.dart';
 import 'package:base_converter_app/widgets/all_bases.dart';
 import 'package:base_converter_app/widgets/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
+import 'package:base_converter_app/widgets/rate_us.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 enum Screen { commonBase, allBase }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.updateTheme, required this.theme});
+  const HomePage(
+      {super.key,
+      required this.updateTheme,
+      required this.theme,
+      required this.updateDecimalPlaces,
+      required this.decimalPlace});
   final Function(bool) updateTheme;
+  final Function(int) updateDecimalPlaces;
+  final int decimalPlace;
   final bool theme;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-
-
 class _HomePageState extends State<HomePage> {
-
-  TextInputType keyboardInputType = const TextInputType.numberWithOptions(decimal: true);
+  TextInputType keyboardInputType =
+      const TextInputType.numberWithOptions(decimal: true);
   bool isFormatted = true;
 
   void updateKeyboardType(TextInputType keyboardType) {
@@ -28,7 +34,6 @@ class _HomePageState extends State<HomePage> {
       keyboardInputType = keyboardType;
     });
   }
-
 
   void updateInputFormat(bool inputFormat) {
     setState(() {
@@ -80,10 +85,6 @@ class _HomePageState extends State<HomePage> {
   Screen selectedScreen = Screen.commonBase;
   bool showScreen = false;
 
-  
-
- 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -119,7 +120,6 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: PopupMenuButton(
-
                         icon: const Icon(
                           Icons.more_vert,
                           color: Colors.white,
@@ -139,18 +139,19 @@ class _HomePageState extends State<HomePage> {
                                               updateTheme: widget.updateTheme,
                                               keyboard: keyboardInputType,
                                               inputFormat: isFormatted,
-
                                               updateInputFormat:
                                                   updateInputFormat,
                                               theme: widget.theme,
-
+                                              decimalPlace: widget.decimalPlace,
+                                              updateDecimalPlaces:
+                                                  widget.updateDecimalPlaces,
                                             ))),
                               ),
                               PopupMenuItem(
                                 onTap: () => showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return  DialogBoxWidget();
+                                      return DialogBoxWidget();
                                     }),
                                 child: Text(
                                   'About App',
@@ -158,10 +159,16 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               PopupMenuItem(
+                                  onTap: () => showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return RateUsDialogBox();
+                                      }),
                                   child: Text(
-                                'Rate Us',
-                                style: Theme.of(context).textTheme.bodySmall,
-                              )),
+                                    'Rate Us',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  )),
                             ])),
               ],
             ),
@@ -190,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(top: 12.0, bottom: 12),
+                        padding: const EdgeInsets.only(top: 12.0, bottom: 12),
                         child: Text(
                           "COMMON BASES",
                           textAlign: TextAlign.center,
@@ -242,12 +249,13 @@ class _HomePageState extends State<HomePage> {
                 ? AllBases(
                     key: allBaseKey,
                     keyboard: keyboardInputType,
-                    isFormatted: isFormatted,
+                    isFormatted: isFormatted, decimalPlaces: widget.decimalPlace,
                   )
                 : CommonBase(
                     key: commonBaseKey,
                     keyboard: keyboardInputType,
                     isFormatted: isFormatted,
+                    decimalPlaces: widget.decimalPlace,
                   ),
           ],
         ),

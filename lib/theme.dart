@@ -7,7 +7,7 @@ Color buttonColor(Set<MaterialState> states) {
 final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     dialogBackgroundColor: Colors.white,
-    popupMenuTheme: PopupMenuThemeData(color: Colors.white),
+    popupMenuTheme: const PopupMenuThemeData(color: Colors.white),
     textTheme: const TextTheme(
         bodySmall: TextStyle(color: Colors.black, fontSize: 14),
         titleMedium: TextStyle(color: Colors.black),
@@ -20,7 +20,7 @@ final lightTheme = ThemeData(
 final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
     dialogBackgroundColor: Colors.black,
-    popupMenuTheme: PopupMenuThemeData(color: Colors.black),
+    popupMenuTheme: const PopupMenuThemeData(color: Colors.black),
     textTheme: const TextTheme(
       titleMedium: TextStyle(color: Colors.white),
       titleLarge: TextStyle(color: Colors.white),

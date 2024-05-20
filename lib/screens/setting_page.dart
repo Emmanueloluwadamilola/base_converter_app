@@ -8,24 +8,25 @@ class SettingPage extends StatefulWidget {
       required this.updateTheme,
       required this.inputFormat,
       required this.keyboard,
-
       required this.updateInputFormat,
-      required this.theme});
+      required this.theme,
+      required this.decimalPlace,
+      required this.updateDecimalPlaces});
   final Function(TextInputType) updateKeyboardType;
   final Function(bool) updateTheme;
   final Function(bool) updateInputFormat;
+  final Function(int) updateDecimalPlaces;
   late TextInputType keyboard;
   late bool inputFormat;
   late bool theme;
-
+  late int decimalPlace;
 
   @override
   State<SettingPage> createState() => _SettingPageState();
 }
 
 class _SettingPageState extends State<SettingPage> {
-  int selectedTypingValue = 1;
-  int decimalPlaces = 1;
+  List<int> decimalPlacesList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class _SettingPageState extends State<SettingPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 5, right: 5),
+        padding: const EdgeInsets.only(top: 16, left: 10, right: 20),
         child: ListView(
           children: [
             Column(
@@ -64,8 +65,8 @@ class _SettingPageState extends State<SettingPage> {
                         widget.updateKeyboardType(widget.keyboard);
                       });
                     },
-                    child:  Text(
-                      'Show number keyboard when neccessary',
+                    child: Text(
+                      'Show number keyboard always',
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
                 RadioMenuButton(
@@ -77,7 +78,7 @@ class _SettingPageState extends State<SettingPage> {
                         widget.updateKeyboardType(widget.keyboard);
                       });
                     },
-                    child:  Text(
+                    child: Text(
                       'Never show number keyboard',
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
@@ -110,7 +111,7 @@ class _SettingPageState extends State<SettingPage> {
                         widget.updateInputFormat(widget.inputFormat);
                       });
                     },
-                    child:  Text(
+                    child: Text(
                       'Allow to type invalid numbers(N/A for result)',
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
@@ -121,30 +122,26 @@ class _SettingPageState extends State<SettingPage> {
               children: [
                 const Text('Theme'),
                 RadioMenuButton(
-
                   value: true,
                   groupValue: widget.theme,
                   onChanged: (value) {
                     setState(() {
                       widget.theme = value!;
                       widget.updateTheme(widget.theme);
-
                     });
                   },
-                  child:  Text(
+                  child: Text(
                     'Light',
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
                 RadioMenuButton(
-
                     value: false,
                     groupValue: widget.theme,
                     onChanged: (value) {
                       setState(() {
                         widget.theme = value!;
                         widget.updateTheme(widget.theme);
-
                       });
                     },
                     child: Text(
@@ -153,6 +150,36 @@ class _SettingPageState extends State<SettingPage> {
                     )),
               ],
             ),
+            Row(
+              children: [
+                const Text('Decimal Places'),
+                const Spacer(),
+                Container(
+                  height: 120,
+                  width: 180,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.blue)),
+                  child: ListWheelScrollView(
+                      controller: FixedExtentScrollController(
+                          initialItem: widget.decimalPlace-1),
+                      clipBehavior: Clip.antiAlias,
+                      itemExtent: 55,
+                      onSelectedItemChanged: (value) {
+                        setState(() {
+                          widget.decimalPlace = value + 1;
+                          widget.updateDecimalPlaces(widget.decimalPlace);
+                        });
+                      },
+                      children: List.generate(
+                          decimalPlacesList.length,
+                          (index) => Text(
+                                '${decimalPlacesList[index]}',
+                                style: const TextStyle(fontSize: 25),
+                              ))),
+                )
+              ],
+            )
           ],
         ),
       ),

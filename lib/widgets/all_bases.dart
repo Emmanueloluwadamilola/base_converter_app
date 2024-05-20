@@ -6,10 +6,11 @@ class AllBases extends StatefulWidget {
   const AllBases({
     super.key,
     required this.keyboard,
-    required this.isFormatted,
+    required this.isFormatted, required this.decimalPlaces,
   });
   final TextInputType keyboard;
   final bool isFormatted;
+  final int decimalPlaces;
 
   @override
   State<AllBases> createState() => AllBasesState();
@@ -50,98 +51,387 @@ class AllBasesState extends State<AllBases> {
 
   void updateOtherTextFields(
       TextEditingController sourceController, String text, int sourceBase) {
-    try {
-      int inputValue = int.parse(text, radix: sourceBase);
+    List<String> parts = text.split('.');
+    int inputValue = int.parse(parts[0], radix: sourceBase);
+    double fractionalValue =
+        parts.length > 1 ? double.parse('0.${parts[1]}') : 0;
+    //int? resultBase;
+    String fractionalConverted = '';
+    String intValueConverted = '';
+    //int getResultBase(){}
 
+    getConversion(int resultBase) {
+      if (fractionalValue != 0) {
+        double fractionalDecimal = fractionalValue;
+        List<String> fractionalDigits = [];
+        for (int i = 0; i < 20; i++) {
+          fractionalDecimal *= resultBase;
+          int digit = fractionalDecimal.truncate();
+          fractionalDigits.add(digit.toRadixString(resultBase));
+          fractionalDecimal -= digit;
+          if (fractionalDecimal == 0) break;
+        }
+        fractionalConverted = fractionalDigits.join('');
+
+        if (fractionalConverted.length >= widget.decimalPlaces) {
+          fractionalConverted =
+              fractionalConverted.substring(0, widget.decimalPlaces);
+        } else {
+         return fractionalConverted;
+        }
+      }
+    }
+
+    getResult() {
       if (sourceController != base2Controller) {
-        base2Controller.text = inputValue.toRadixString(2);
+        int resultBase = 2;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base2Controller.text = intValueConverted +
+            (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : '');
       }
       if (sourceController != base3Controller) {
-        base3Controller.text = inputValue.toRadixString(3);
+        int resultBase = 3;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base3Controller.text = intValueConverted +
+            (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : '');
       }
       if (sourceController != base4Controller) {
-        base4Controller.text = inputValue.toRadixString(4);
+        int resultBase = 4;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base4Controller.text = intValueConverted +
+            (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : '');
       }
       if (sourceController != base5Controller) {
-        base5Controller.text = inputValue.toRadixString(5);
+        int resultBase = 5;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base5Controller.text = intValueConverted +
+            (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : '');
       }
       if (sourceController != base6Controller) {
-        base6Controller.text = inputValue.toRadixString(6);
+        int resultBase = 6;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base6Controller.text = intValueConverted +
+            (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : '');
       }
       if (sourceController != base7Controller) {
-        base7Controller.text = inputValue.toRadixString(7);
+        int resultBase = 7;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base7Controller.text = intValueConverted +
+            (fractionalConverted.isNotEmpty ? '.$fractionalConverted' : '');
       }
       if (sourceController != base8Controller) {
-        base8Controller.text = inputValue.toRadixString(8);
+        int resultBase = 8;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base8Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base9Controller) {
-        base9Controller.text = inputValue.toRadixString(9);
+        int resultBase = 9;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base9Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base10Controller) {
-        base10Controller.text = inputValue.toString();
+        int resultBase = 10;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base10Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base11Controller) {
-        base11Controller.text = inputValue.toRadixString(11).toUpperCase();
+        int resultBase = 11;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base11Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base12Controller) {
-        base12Controller.text = inputValue.toRadixString(12).toUpperCase();
+        int resultBase = 12;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base12Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base13Controller) {
-        base13Controller.text = inputValue.toRadixString(13).toUpperCase();
+        int resultBase = 13;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base13Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base14Controller) {
-        base14Controller.text = inputValue.toRadixString(14).toUpperCase();
+        int resultBase = 14;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base14Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base15Controller) {
-        base15Controller.text = inputValue.toRadixString(15).toUpperCase();
+        int resultBase = 15;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base15Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base16Controller) {
-        base16Controller.text = inputValue.toRadixString(16).toUpperCase();
+        int resultBase = 16;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base16Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base17Controller) {
-        base17Controller.text = inputValue.toRadixString(17).toUpperCase();
+        int resultBase = 17;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base17Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base18Controller) {
-        base18Controller.text = inputValue.toRadixString(18).toUpperCase();
+        int resultBase = 18;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base18Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base19Controller) {
-        base19Controller.text = inputValue.toRadixString(19).toUpperCase();
+        int resultBase = 19;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base19Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base20Controller) {
-        base20Controller.text = inputValue.toRadixString(20).toUpperCase();
+        int resultBase = 20;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base20Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base21Controller) {
-        base21Controller.text = inputValue.toRadixString(21).toUpperCase();
+        int resultBase = 21;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base21Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base22Controller) {
-        base22Controller.text = inputValue.toRadixString(22).toUpperCase();
+        int resultBase = 22;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base22Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base23Controller) {
-        base23Controller.text = inputValue.toRadixString(23).toUpperCase();
+        int resultBase = 23;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base23Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base24Controller) {
-        base24Controller.text = inputValue.toRadixString(24).toUpperCase();
+        int resultBase = 24;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base24Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base25Controller) {
-        base25Controller.text = inputValue.toRadixString(25).toUpperCase();
+        int resultBase = 25;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base25Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base26Controller) {
-        base26Controller.text = inputValue.toRadixString(26).toUpperCase();
+        int resultBase = 26;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base26Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base27Controller) {
-        base27Controller.text = inputValue.toRadixString(27).toUpperCase();
+        int resultBase = 27;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base27Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base28Controller) {
-        base28Controller.text = inputValue.toRadixString(28).toUpperCase();
+        int resultBase = 28;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base28Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base29Controller) {
-        base29Controller.text = inputValue.toRadixString(29).toUpperCase();
+        int resultBase = 29;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base29Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
       if (sourceController != base30Controller) {
-        base30Controller.text = inputValue.toRadixString(30).toUpperCase();
+        int resultBase = 30;
+        intValueConverted = inputValue.toRadixString(resultBase);
+        getConversion(resultBase);
+        base30Controller.text = intValueConverted.toUpperCase() +
+            (fractionalConverted.isNotEmpty
+                ? '.$fractionalConverted'.toUpperCase()
+                : '');
       }
-     // ignore: empty_catches
-     } catch (e) {}
+    }
+    // ignore: empty_catches
+
+    if (widget.isFormatted == true) {
+      try {
+        getResult();
+      } catch (e) {}
+    } else {
+      try {
+        getResult();
+      } catch (e) {
+        if (sourceController != base2Controller) {
+          base2Controller.text = 'N/A';
+        }
+        if (sourceController != base3Controller) {
+          base3Controller.text = 'N/A';
+        }
+        if (sourceController != base4Controller) {
+          base4Controller.text = 'N/A';
+        }
+        if (sourceController != base5Controller) {
+          base5Controller.text = 'N/A';
+        }
+        if (sourceController != base6Controller) {
+          base6Controller.text = 'N/A';
+        }
+        if (sourceController != base7Controller) {
+          base7Controller.text = 'N/A';
+        }
+        if (sourceController != base8Controller) {
+          base8Controller.text = 'N/A';
+        }
+        if (sourceController != base9Controller) {
+          base9Controller.text = 'N/A';
+        }
+        if (sourceController != base10Controller) {
+          base10Controller.text = 'N/A';
+        }
+        if (sourceController != base11Controller) {
+          base11Controller.text = 'N/A';
+        }
+        if (sourceController != base12Controller) {
+          base12Controller.text = 'N/A';
+        }
+        if (sourceController != base13Controller) {
+          base13Controller.text = 'N/A';
+        }
+        if (sourceController != base14Controller) {
+          base14Controller.text = 'N/A';
+        }
+        if (sourceController != base15Controller) {
+          base15Controller.text = 'N/A';
+        }
+        if (sourceController != base16Controller) {
+          base16Controller.text = 'N/A';
+        }
+        if (sourceController != base17Controller) {
+          base17Controller.text = 'N/A';
+        }
+        if (sourceController != base18Controller) {
+          base18Controller.text = 'N/A';
+        }
+        if (sourceController != base19Controller) {
+          base19Controller.text = 'N/A';
+        }
+        if (sourceController != base20Controller) {
+          base20Controller.text = 'N/A';
+        }
+        if (sourceController != base21Controller) {
+          base21Controller.text = 'N/A';
+        }
+        if (sourceController != base22Controller) {
+          base22Controller.text = 'N/A';
+        }
+        if (sourceController != base23Controller) {
+          base23Controller.text = 'N/A';
+        }
+        if (sourceController != base24Controller) {
+          base24Controller.text = 'N/A';
+        }
+        if (sourceController != base25Controller) {
+          base25Controller.text = 'N/A';
+        }
+        if (sourceController != base26Controller) {
+          base26Controller.text = 'N/A';
+        }
+        if (sourceController != base27Controller) {
+          base27Controller.text = 'N/A';
+        }
+        if (sourceController != base28Controller) {
+          base28Controller.text = 'N/A';
+        }
+        if (sourceController != base29Controller) {
+          base29Controller.text = 'N/A';
+        }
+        if (sourceController != base30Controller) {
+          base30Controller.text = 'N/A';
+        }
+      }
+    }
   }
 
   @override
