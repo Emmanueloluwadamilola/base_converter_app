@@ -1,16 +1,16 @@
 # base_converter_app
 
-A new Flutter project.
+## About the App
+This is a clone of the app built by [Universapp](https://play.google.com/store/apps/developer?id=Universapp) using flutter.
+### Functionality
+- It can convert from any base to another(up till base 30)
+- Light and Dark theme
+- Decimal place base conversion
+### Dependencies used
+- Gap
+- Shared preference
+- url launcher
 
-## Getting Started
+Basically for the state management, setstate and callbacks were used.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![<image name>](<image path earlier copied>)
