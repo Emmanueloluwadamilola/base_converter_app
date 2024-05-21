@@ -13,4 +13,7 @@ This is a clone of the app built by [Universapp](https://play.google.com/store/a
 
 Basically for the state management, setstate and callbacks were used.
 
-![<image name>](<image path earlier copied>)
+![<Home page>](<C:\Users\USER\Documents\flutter projects\base_converter_app\lib\screenshots\homepage_1.jpg>)
+![<Home page>](<C:\Users\USER\Documents\flutter projects\base_converter_app\lib\screenshots\homepage_2.jpg>)
+![<Setting page(dark mode)>](<C:\Users\USER\Documents\flutter projects\base_converter_app\lib\screenshots\dark_setting.jpg>)
+![<Home page(Dark mode)>](<C:\Users\USER\Documents\flutter projects\base_converter_app\lib\screenshots\dark_homepage.jpg>)
