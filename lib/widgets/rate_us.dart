@@ -11,7 +11,7 @@ class RateUsDialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).cardColor,
       title: Text(
         'About App',
         style: Theme.of(context).textTheme.titleLarge,

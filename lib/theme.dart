@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color buttonColor(Set<MaterialState> states) {
+Color buttonColor(Set<WidgetState> states) {
   return Colors.blue;
 }
 
@@ -13,9 +13,9 @@ final lightTheme = ThemeData(
         titleMedium: TextStyle(color: Colors.black),
         titleLarge: TextStyle(color: Colors.black),
         bodyMedium: TextStyle(color: Colors.black)),
-    backgroundColor: Colors.white,
+   cardColor: Colors.white,
     radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith(buttonColor)));
+        fillColor: WidgetStateProperty.resolveWith(buttonColor)));
 
 final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
@@ -27,6 +27,7 @@ final darkTheme = ThemeData(
       bodySmall: TextStyle(color: Colors.white, fontSize: 14),
       bodyMedium: TextStyle(color: Colors.white),
     ),
-    backgroundColor: Colors.blue,
+    
+    cardColor: Colors.blue,
     radioTheme: RadioThemeData(
         fillColor: MaterialStateProperty.resolveWith(buttonColor)));
