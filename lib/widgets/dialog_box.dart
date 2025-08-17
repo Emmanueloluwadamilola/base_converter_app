@@ -3,7 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DialogBoxWidget extends StatelessWidget {
-  DialogBoxWidget({super.key});
+  DialogBoxWidget({super.key, required this.bodyText, required this.title});
+  final String bodyText;
+  final String title;
 
   final Uri _url =
       Uri.parse('https://github.com/Emmanueloluwadamilola/base_converter_app');
@@ -13,7 +15,7 @@ class DialogBoxWidget extends StatelessWidget {
     return AlertDialog(
       backgroundColor: Theme.of(context).cardColor,
       title: Text(
-        'About App',
+        title,
         style: Theme.of(context).textTheme.titleLarge,
         textAlign: TextAlign.center,
       ),
@@ -21,8 +23,7 @@ class DialogBoxWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'This app is a clone of an original app created by Universapp'
-            '\nThis clone is created using flutter. The link to the github codebase is below',
+            bodyText,
             style:
                 Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),
           ),

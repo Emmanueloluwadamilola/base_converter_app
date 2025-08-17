@@ -13,7 +13,7 @@ This is a clone of the app built by [Universapp](https://play.google.com/store/a
 
 Basically for the state management, setstate and callbacks were used.
 
-<img src="lib/screenshots/homepage_1.jpg" width="300" /> 1&nbsp;&nbsp;&nbsp;  <img src="lib/screenshots/homepage_2.jpg" width="300" />
+<img src="screenshots/homepage_1.jpg" width="300" /> 1&nbsp;&nbsp;&nbsp;  <img src="screenshots/homepage_2.jpg" width="300" />
 
-<img src="lib/screenshots/dark_setting.jpg" width="300" /> 1&nbsp;&nbsp;&nbsp;  <img src="lib/screenshots/dark_homepage.jpg" width="300" />  
+<img src="screenshots/dark_setting.jpg" width="300" /> 1&nbsp;&nbsp;&nbsp;  <img src="screenshots/dark_homepage.jpg" width="300" />  
 

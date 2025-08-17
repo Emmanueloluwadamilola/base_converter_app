@@ -1,8 +1,7 @@
-import 'package:base_converter_app/Widgets/about_us.dart';
-import 'package:base_converter_app/widgets/all_bases.dart';
-import 'package:base_converter_app/widgets/common_base.dart';
+import 'package:base_converter_app/screens/all_bases.dart';
+import 'package:base_converter_app/screens/common_base.dart';
 import 'package:base_converter_app/screens/setting_page.dart';
-import 'package:base_converter_app/widgets/rate_us.dart';
+import 'package:base_converter_app/widgets/dialog_box.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -151,7 +150,12 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () => showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return DialogBoxWidget();
+                                      return DialogBoxWidget(
+                                        title:'About App',
+                                        bodyText:
+                                            'This app is a clone of an original app created by Universapp'
+                                            '\nThis clone is created using flutter. The link to the github codebase is below',
+                                      );
                                     }),
                                 child: Text(
                                   'About App',
@@ -162,7 +166,12 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () => showDialog(
                                       context: context,
                                       builder: (context) {
-                                        return RateUsDialogBox();
+                                        return DialogBoxWidget(
+                                          title: 'Rate Us',
+                                          bodyText:
+                                              'You can kindly star this project on github'
+                                              '\nThe link to the github codebase is below',
+                                        );
                                       }),
                                   child: Text(
                                     'Rate Us',
@@ -249,7 +258,8 @@ class _HomePageState extends State<HomePage> {
                 ? AllBases(
                     key: allBaseKey,
                     keyboard: keyboardInputType,
-                    isFormatted: isFormatted, decimalPlaces: widget.decimalPlace,
+                    isFormatted: isFormatted,
+                    decimalPlaces: widget.decimalPlace,
                   )
                 : CommonBase(
                     key: commonBaseKey,
